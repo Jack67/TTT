@@ -4,6 +4,9 @@
  */
 package GameControl;
 
+import Opponent.*;
+import View.*;
+
 /**
  *
  * @author Michael Müller michael.mueller.02
@@ -11,4 +14,14 @@ package GameControl;
  */
 public class GameControl {
     
+    public GameControl(){
+        
+    }
+    
+    
+    public static void main(String[] args) {
+        GameControl gc = new GameControl();
+        Gui g = new Gui();
+        OpponentCtrl oc = new OpponentCtrl();
+    }
 }

@@ -4,11 +4,18 @@
  */
 package View;
 
+import java.util.EventListener;
+import javax.swing.JMenu;
+
 /**
  *
  * @author Michael Müller michael.mueller.02
  * @stud.hslu.ch
  */
-public class Menu {
+public class Menu extends JMenu implements EventListener{
+    
+    public  Menu(){
+        
+    }
     
 }

@@ -11,4 +11,8 @@ package Opponent;
  */
 public class OpponentCtrl {
     
+    public OpponentCtrl(){
+        
+    }
+    
 }
