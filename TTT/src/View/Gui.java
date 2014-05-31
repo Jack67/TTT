@@ -4,6 +4,7 @@
  */
 package View;
 
+import GameControl.GameControl;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -15,12 +16,12 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  */
 public class Gui extends JFrame{
     
-    private GameBoard gameField;
+    private GameBoard gameBoard;
     private Menu menu;
     
-    public Gui(){
+    public Gui(GameControl gC){
         super("TicTacToe");
-        gameField = new GameBoard();
+        gameBoard = new GameBoard(gC);
         menu = new Menu();
         setSize(300, 330);
         setLocationRelativeTo(null);
@@ -28,7 +29,7 @@ public class Gui extends JFrame{
         setResizable(false);
         
         add(menu, BorderLayout.NORTH);
-        add(gameField, BorderLayout.CENTER);
+        add(gameBoard, BorderLayout.CENTER);
         
         setVisible(true);
     }
