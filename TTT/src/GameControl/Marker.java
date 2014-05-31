@@ -4,12 +4,14 @@
  */
 package GameControl;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Michael Müller michael.mueller.02
  * @stud.hslu.ch
  */
-public class Marker {
+public class Marker implements Serializable{
     
     public final static int NONE = 0;
     public final static int FIRST_PLAYER = 1;

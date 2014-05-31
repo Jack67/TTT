@@ -6,13 +6,14 @@ package GameControl;
 
 import Opponent.*;
 import View.*;
+import java.io.Serializable;
 
 /**
  *
  * @author Michael Müller michael.mueller.02
  * @stud.hslu.ch
  */
-public class GameControl {
+public class GameControl{
     
     public final static int OPP_KI = 1;
     public final static int OPP_LOCAL = 2;
@@ -31,6 +32,7 @@ public class GameControl {
     private boolean gameOver;
     
     public GameControl(){
+        
         opponent = OPP_LOCAL;
         player_1 = ME;
         player = PLAYER_1;
@@ -48,6 +50,14 @@ public class GameControl {
         gB.updateGameBoard(gameBoard);
     }
     
+    public void updateGameBoard(){
+        gB.updateGameBoard(gameBoard);
+    }
+    
+    public GameControl getGameControlObject(){
+        return this;
+    }
+    
     public void setOpponent(int opp){
         opponent = opp;
     }
@@ -56,8 +66,36 @@ public class GameControl {
         this.player = player;
     }
     
+    public void setPlayer1(int player){
+        player_1 = player;
+    }
+    
     public void setBegin(int begin){
         this.player_1 = begin;
+    }
+    
+    public void setGameBoard(Marker[][] gB){
+        gameBoard = gB;
+    }
+    
+    public int getOpponent(){
+        return opponent;
+    }
+    
+    public int getPlayer(){
+        return player;
+    }
+    
+    public int getPlayer1(){
+        return player_1;
+    }
+    
+    public int getBegin(){
+        return player_1;
+    }
+    
+    public Marker[][] getGameBoard(){
+        return gameBoard;
     }
     
     public void setGameOver(){
@@ -107,6 +145,9 @@ public class GameControl {
                     }
                     else if(opponent == OPP_LOCAL){
                         gameBoard[x][y].setPlayer(Marker.FIRST_PLAYER);
+                    }
+                    else if(opponent == OPP_KI){
+                        
                     }
                     player = PLAYER_2;
                 }

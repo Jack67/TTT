@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 import javax.swing.JPanel;
 
 /**
@@ -20,7 +21,7 @@ import javax.swing.JPanel;
  * @author Michael Müller michael.mueller.02
  * @stud.hslu.ch
  */
-public class GameBoard extends JPanel implements MouseListener{
+public class GameBoard extends JPanel implements MouseListener, Serializable{
     
     private GameControl gameCtrl;
     private Marker[][] gameBoard;

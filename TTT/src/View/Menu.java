@@ -5,6 +5,7 @@
 package View;
 
 import GameControl.GameControl;
+import GameControl.SaveCtrl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenu;
@@ -98,10 +99,22 @@ public class Menu extends JMenuBar implements ActionListener{
                 gameControl.startNewGame();
                 break;
             case "Speichern...":
-                System.out.println("Speichern...");
+                SaveCtrl.save(gameControl);
                 break;
             case "Öffnen...":
-                System.out.println("Öffnen...");
+                SaveCtrl sC = SaveCtrl.load();
+                gameControl.setBegin(sC.getBegin());
+                gameControl.setGameBoard(sC.getGameBoard());
+                gameControl.setOpponent(sC.getOpponent());
+                gameControl.setPlayer(sC.getPlayer());
+                gameControl.setPlayer1(sC.getPlayer1());
+                if(sC.getGameOver()){
+                    gameControl.setGameOver();
+                }
+                else{
+                    gameControl.clearGameOver();
+                }
+                gameControl.updateGameBoard();
                 break;
             case "Gegner KI":
                 gameControl.setOpponent(GameControl.OPP_KI);
