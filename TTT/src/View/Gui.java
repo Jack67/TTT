@@ -5,6 +5,7 @@
 package View;
 
 import GameControl.GameControl;
+import Opponent.OpponentCtrl;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -19,10 +20,10 @@ public class Gui extends JFrame{
     private GameBoard gameBoard;
     private Menu menu;
     
-    public Gui(GameControl gC){
+    public Gui(GameControl gC, OpponentCtrl oC){
         super("TicTacToe");
         gameBoard = new GameBoard(gC);
-        menu = new Menu(gC);
+        menu = new Menu(gC, oC);
         setSize(300, 330);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -6,7 +6,7 @@ package GameControl;
 
 import Opponent.*;
 import View.*;
-import java.io.Serializable;
+import java.awt.Point;
 
 /**
  *
@@ -25,14 +25,15 @@ public class GameControl{
     
     private Marker[][] gameBoard;
     private GameBoard gB;
+    private OpponentCtrl oppCtrl;
 
     private int opponent;
     private int player;
     private int player_1;
     private boolean gameOver;
     
-    public GameControl(){
-        
+    public GameControl(OpponentCtrl oC){
+        oppCtrl = oC;
         opponent = OPP_LOCAL;
         player_1 = ME;
         player = PLAYER_1;
@@ -142,18 +143,17 @@ public class GameControl{
                 if(player == PLAYER_1){
                     if(player_1 == ME){
                         gameBoard[x][y].setPlayer(Marker.FIRST_PLAYER);
+                        oppCtrl.makeNextMove(opponent);
                     }
                     else if(opponent == OPP_LOCAL){
                         gameBoard[x][y].setPlayer(Marker.FIRST_PLAYER);
-                    }
-                    else if(opponent == OPP_KI){
-                        
                     }
                     player = PLAYER_2;
                 }
                 else{
                     if(player_1 != ME){
                         gameBoard[x][y].setPlayer(Marker.SECOND_PLAYER);
+                        oppCtrl.makeNextMove(opponent);
                     }
                     else if(opponent == OPP_LOCAL){
                         gameBoard[x][y].setPlayer(Marker.SECOND_PLAYER);
@@ -168,9 +168,29 @@ public class GameControl{
         }
     }
     
+    public void setMarkerByOpponent(int x, int y){
+        if(!gameOver){
+            if(gameBoard[x][y].getPlayer() == Marker.NONE){
+                if(player == PLAYER_1){
+                    gameBoard[x][y].setPlayer(Marker.FIRST_PLAYER);
+                    player = PLAYER_2;
+                }
+                else{
+                    gameBoard[x][y].setPlayer(Marker.SECOND_PLAYER);
+                    player = PLAYER_1;
+                }
+                if(gameOverCheck()){
+                    setGameOver();
+                }
+                gB.updateGameBoard(gameBoard);
+            }
+        }
+    }
+    
     public static void main(String[] args) {
-        GameControl gc = new GameControl();
-        Gui g = new Gui(gc);
         OpponentCtrl oc = new OpponentCtrl();
+        GameControl gc = new GameControl(oc);
+        oc.setGameControl(gc);
+        Gui g = new Gui(gc, oc);       
     }
 }

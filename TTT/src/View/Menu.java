@@ -6,6 +6,7 @@ package View;
 
 import GameControl.GameControl;
 import GameControl.SaveCtrl;
+import Opponent.OpponentCtrl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenu;
@@ -39,9 +40,11 @@ public class Menu extends JMenuBar implements ActionListener{
     JMenuItem villain;
     
     GameControl gameControl;
+    OpponentCtrl oppControl;
     
-    public  Menu(GameControl gC){
+    public  Menu(GameControl gC, OpponentCtrl oC){
         gameControl = gC;
+        oppControl = oC;
         
         datei = new JMenu("Datei");
         save = new JMenuItem("Speichern...");
@@ -126,10 +129,10 @@ public class Menu extends JMenuBar implements ActionListener{
                 gameControl.setOpponent(GameControl.OPP_NET);
                 break;
             case "Spiel anbieten":
-                System.out.println("Spiel anbieten");
+                oppControl.waitForPlayer();
                 break;
             case "Spiel suchen":
-                System.out.println("Spiel suchen");
+                oppControl.searchPlayer();
                 break;
             case "Ich":
                 gameControl.setBegin(GameControl.ME);
