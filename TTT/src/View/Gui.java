@@ -22,7 +22,7 @@ public class Gui extends JFrame{
     public Gui(GameControl gC){
         super("TicTacToe");
         gameBoard = new GameBoard(gC);
-        menu = new Menu();
+        menu = new Menu(gC);
         setSize(300, 330);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

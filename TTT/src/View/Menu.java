@@ -4,9 +4,9 @@
  */
 package View;
 
+import GameControl.GameControl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -37,7 +37,11 @@ public class Menu extends JMenuBar implements ActionListener{
     JMenuItem me;
     JMenuItem villain;
     
-    public  Menu(){
+    GameControl gameControl;
+    
+    public  Menu(GameControl gC){
+        gameControl = gC;
+        
         datei = new JMenu("Datei");
         save = new JMenuItem("Speichern...");
         open = new JMenuItem("Öffnen...");
@@ -86,12 +90,12 @@ public class Menu extends JMenuBar implements ActionListener{
         me.addActionListener(this);
         villain.addActionListener(this);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()){
             case "Neues Spiel":
-                System.out.println("Neues Spiel");
+                gameControl.startNewGame();
                 break;
             case "Speichern...":
                 System.out.println("Speichern...");
@@ -100,13 +104,13 @@ public class Menu extends JMenuBar implements ActionListener{
                 System.out.println("Öffnen...");
                 break;
             case "Gegner KI":
-                System.out.println("Gegner KI");
+                gameControl.setOpponent(GameControl.OPP_KI);
                 break;
             case "Gegner lokaler Spieler":
-                System.out.println("Gegner lokaler Spieler");
+                gameControl.setOpponent(GameControl.OPP_LOCAL);
                 break;
             case "Gegner Netzwerkspieler":
-                System.out.println("Gegner Netzwerkspieler");
+                gameControl.setOpponent(GameControl.OPP_NET);
                 break;
             case "Spiel anbieten":
                 System.out.println("Spiel anbieten");
@@ -115,13 +119,13 @@ public class Menu extends JMenuBar implements ActionListener{
                 System.out.println("Spiel suchen");
                 break;
             case "Ich":
-                System.out.println("Ich");
+                gameControl.setBegin(GameControl.ME);
                 break;
             case "Gegner":
-                System.out.println("Gegner");
+                gameControl.setBegin(GameControl.OPP);
                 break;
             case "Exit":
-                System.out.println("Exit");
+                System.exit(0);
                 break;
         }
     }

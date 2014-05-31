@@ -8,6 +8,7 @@ import GameControl.GameControl;
 import GameControl.Marker;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -21,8 +22,8 @@ import javax.swing.JPanel;
  */
 public class GameBoard extends JPanel implements MouseListener{
     
-    GameControl gameCtrl;
-    Marker[][] gameBoard;
+    private GameControl gameCtrl;
+    private Marker[][] gameBoard;
     
     public GameBoard(GameControl gC){
         gameCtrl = gC;
@@ -60,7 +61,7 @@ public class GameBoard extends JPanel implements MouseListener{
             y = 2;
         }
         if(x <= 2 && y <= 2){
-            gameCtrl.setMarker(x, y);
+            gameCtrl.setMarkerByView(x, y);
         }
     }
 
@@ -109,6 +110,12 @@ public class GameBoard extends JPanel implements MouseListener{
                     g.drawOval(x * 80 + 26 + x + 10, y * 80 + 26 + y + 10, 55, 55);
                 }
             }
+        }
+        // Game Over
+        if(gameCtrl.getGameOver()){
+            g.setColor(Color.RED);
+            g.setFont(new Font("Dialog", 0, 50));
+            g.drawString("Game Over", 15, 150);
         }
     }
 }
